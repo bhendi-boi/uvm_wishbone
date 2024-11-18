@@ -1,3 +1,27 @@
+class rand_read_seq extends uvm_sequence;
+    `uvm_object_utils(rand_read_seq)
+
+    int no_of_tr;
+    transaction tr;
+
+    function new(string name = "rand_read_seq");
+        super.new(name);
+    endfunction
+
+
+    function void set_no_of_tr(int no_of_tr);
+        this.no_of_tr = no_of_tr;
+    endfunction
+
+    task body();
+        tr = transaction::type_id::create("tr");
+        repeat (no_of_tr) begin
+            `uvm_do_with(tr, {we == 0; rst == 0;});
+        end
+    endtask
+
+endclass
+
 class rand_write_seq extends uvm_sequence;
     `uvm_object_utils(rand_write_seq)
 
