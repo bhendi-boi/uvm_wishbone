@@ -5,7 +5,7 @@ class transaction extends uvm_sequence_item;
     rand logic we;
     logic strb;
     rand logic rst;
-    rand logic [7:0] addr;
+    randc logic [7:0] addr;
     rand logic [7:0] wdata;
 
     // output
