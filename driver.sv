@@ -47,6 +47,7 @@ class driver extends uvm_driver #(transaction);
             end else begin
                 @(posedge vif.clk);
                 vif.rst <= 1'b0;
+                vif.we  <= tr.we;
                 @(posedge vif.clk);
                 vif.strb <= 1'b1;
                 vif.addr <= tr.addr;
