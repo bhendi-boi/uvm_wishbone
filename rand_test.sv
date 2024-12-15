@@ -22,9 +22,9 @@ class rand_test extends uvm_test;
 
         rs = reset_seq::type_id::create("rs");
         rw = rand_write_seq::type_id::create("rw");
-        rw.set_no_of_tr(10);
+        rw.set_no_of_tr(256);
         rr = rand_read_seq::type_id::create("rr");
-        rr.set_no_of_tr(10);
+        rr.set_no_of_tr(256);
 
         rs.start(env.agnt.seqr);
         rw.start(env.agnt.seqr);
