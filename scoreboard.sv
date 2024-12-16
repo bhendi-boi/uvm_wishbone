@@ -28,7 +28,13 @@ class scoreboard extends uvm_scoreboard;
             end else begin
                 if (tr.rdata == mem[tr.addr])
                     `uvm_info("Scoreboard", "Read Successful", UVM_NONE)
-                else `uvm_error("Scoreboard", "Read unsuccessful")
+                else
+                    `uvm_error("Scoreboard", $sformatf(
+                               "Read unsuccessful, Address: %d, Data Out = %d, Ideal Data out = %d",
+                               tr.addr,
+                               tr.rdata,
+                               mem[tr.addr]
+                               ))
             end
         end
         print_info();
