@@ -32,7 +32,7 @@ class monitor extends uvm_monitor;
     task capture(transaction tr);
         @(posedge vif.clk);
         tr.rst = vif.rst;
-        if(tr.rst) begin
+        if (tr.rst) begin
             /* `uvm_info("Monitor", "Reset detected", UVM_NONE) */
             return;
         end

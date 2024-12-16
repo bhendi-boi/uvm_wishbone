@@ -37,7 +37,7 @@ module mem_wb (
                 ack = 1'b0;
                 rdata = 8'h00;
                 next_state = check_mode;
-                if(rst) 
+                if (rst)
                     for (int i = 0; i < 256; i++) begin
                         mem[i] <= 8'h11;
                     end

@@ -1,4 +1,4 @@
-interface wb_if(
+interface wb_if (
     input logic clk
 );
     // logic clk;
