@@ -1,0 +1,1 @@
+xrun -Q -unbuffered '-timescale' '1ns/1ns' '-sysv' '-access' '+rw' '+UVM_VERBOSITY=UVM_MEDIUM' '+UVM_TESTNAME=rand_test' '-svseed' '2' -uvmnocdnsextra -uvmhome $UVM_HOME $UVM_HOME/src/uvm_macros.svh design.sv testbench.sv -coverage all -covoverwrite -covtest test_rand
