@@ -26,6 +26,10 @@ module mem_wb (
     always_ff @(posedge clk) begin
         if (rst) begin
             state <= idle;
+            if (rst)
+                for (int i = 0; i < 256; i++) begin
+                    mem[i] <= 8'h11;
+                end
         end else state <= next_state;
     end
 
@@ -37,11 +41,6 @@ module mem_wb (
                 ack = 1'b0;
                 rdata = 8'h00;
                 next_state = check_mode;
-                if (rst)
-                    for (int i = 0; i < 256; i++) begin
-                        mem[i] <= 8'h11;
-                    end
-
             end
 
             check_mode: begin
