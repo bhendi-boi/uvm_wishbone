@@ -1,0 +1,2 @@
+var g_data = {"8":{"pr":"/testbench_sv_unit","ty":2,"dui":2,"dun":"work.testbench_sv_unit","cvgs":[{"h":["\\/testbench_sv_unit::coverage::func ",2,1,16,9],"cov":[42,42,100.00],"opts":{"goal":"100","per_instance":"true","auto_bin_max":"8"}},{"h":["/testbench_sv_unit/coverage/func",1,1,9],"cov":[42,42,100.00],"opts":{"goal":"100","merge_instance":"auto(true)"}}]}};
+processCovergroupsData(g_data);
