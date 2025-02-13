@@ -33,6 +33,16 @@ module mem_wb (
         end else state <= next_state;
     end
 
+    always_ff @(posedge clk) begin
+        if (state == check_mode) begin
+            if (strb && !we) begin
+                temp <= mem[addr];
+            end
+        end
+        if (state == write) begin
+            mem[addr] <= wdata;
+        end
+    end
     ///////////next state and output decoder
     always_comb begin
         case (state)
@@ -48,7 +58,6 @@ module mem_wb (
                     next_state = write;
                 end else if (strb && !we) begin
                     next_state = read;
-                    temp = mem[addr];
                 end else begin
                     next_state = check_mode;
                 end
@@ -56,7 +65,6 @@ module mem_wb (
 
 
             write: begin
-                mem[addr] = wdata;
                 ack = 1'b1;
                 next_state = idle;
             end
