@@ -24,6 +24,7 @@ module top ();
 
     wb_if intf (.clk(clk));
 
+    `include "assertions.sv"
     mem_wb dut (
         .clk(intf.clk),
         .we(intf.we),
