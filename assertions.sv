@@ -26,14 +26,19 @@ wdata_is_valid_when_we_is_asserted: assert property (wdata_is_valid)
 	`uvm_info("Assertions", "Passed: wdata is valid", UVM_HIGH) 
 	else `uvm_error("Assertions", "Failed: wdata is not valid when we is asserted")
 
-
-// TODO:
-// Read check rdata is valid after ack is asserted
-
 property rdata_is_valid;
+	@(posedge intf.clk) disable iff(intf.rst)
 	$rose(intf.ack) |=> !$isunknown(intf.rdata);
 endproperty
 
 rdata_is_valid_after_ack_rises: assert property (rdata_is_valid)
 	`uvm_info("Assertions", "Passed: rdata is valid", UVM_HIGH)
 	else `uvm_error("Assertions", "Failed: rdata is not valid after ack rises")
+
+property strb_is_followed_by_ack;
+	@(posedge intf.clk) disable iff(intf.rst)
+	$rose(intf.strb) |-> ##[1:$] $rose(intf.ack);
+endproperty
+
+rose_strb_followed_by_rose_ack: assert property(strb_is_followed_by_ack) `uvm_info("Assertions", "Passed: rise in str is followed by a rise in ack", UVM_LOW)
+	else `uvm_error("Assertions", "Failed: rise in strb is not followed by a rise in ack")
